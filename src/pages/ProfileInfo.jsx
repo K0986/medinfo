@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, Mail, Phone, Heart, Save, CheckCircle2 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const ProfileInfo = () => {
+    const { user } = useAuth();
     const [saved, setSaved] = useState(false);
     const [profile, setProfile] = useState({
-        name: 'Alex Johnson',
-        email: 'alex.johnson@example.com',
-        phone: '+1 (555) 234-5678',
-        age: '29',
+        name: user?.name || '',
+        email: user?.email || '',
+        phone: '',
+        age: '',
         gender: 'Male',
-        bloodGroup: 'O+',
-        allergies: 'Penicillin, Dust Mites',
-        emergencyContact: 'Sarah Johnson (+1 555-987-6543)',
+        bloodGroup: '',
+        allergies: '',
+        emergencyContact: '',
     });
+
+    useEffect(() => {
+        if (user) {
+            setProfile(prev => ({
+                ...prev,
+                name: user.name || '',
+                email: user.email || ''
+            }));
+        }
+    }, [user]);
 
     const handleChange = (e) => {
         setProfile({ ...profile, [e.target.name]: e.target.value });
