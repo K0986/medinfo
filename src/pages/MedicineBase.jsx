@@ -140,7 +140,7 @@ const MedicineBase = () => {
     ];
 
     useEffect(() => {
-        axios.get("http://localhost:5000/antibiotics")
+        axios.get("https://medinfo-backend-xm7b.onrender.com/antibiotics")
             .then(res => {
                 if (res.data && res.data.length > 0) {
                     // Combine backend data with initial database

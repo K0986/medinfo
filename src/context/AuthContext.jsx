@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+            const response = await axios.post('https://medinfo-backend-xm7b.onrender.com/auth/login', { email, password });
             const loggedInUser = response.data;
             setUser(loggedInUser);
             localStorage.setItem('amr_user', JSON.stringify(loggedInUser));
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (name, email, password) => {
         try {
-            const response = await axios.post('http://localhost:5000/auth/register', { name, email, password });
+            const response = await axios.post('https://medinfo-backend-xm7b.onrender.com/auth/register', { name, email, password });
             const registeredUser = response.data;
             setUser(registeredUser);
             localStorage.setItem('amr_user', JSON.stringify(registeredUser));

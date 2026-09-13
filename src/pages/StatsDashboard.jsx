@@ -31,7 +31,7 @@ const StatsDashboard = () => {
     });
 
     useEffect(() => {
-        axios.get('http://localhost:5000/stats')
+        axios.get('https://medinfo-backend-xm7b.onrender.com/stats')
             .then(res => {
                 if (res.data) {
                     setLiveStats(res.data);

@@ -40,9 +40,9 @@ const AdminDashboard = () => {
         setLoading(true);
         try {
             const [antRes, remRes, statsRes] = await Promise.allSettled([
-                axios.get('http://localhost:5000/antibiotics'),
-                axios.get('http://localhost:5000/remedies'),
-                axios.get('http://localhost:5000/stats')
+                axios.get('https://medinfo-backend-xm7b.onrender.com/antibiotics'),
+                axios.get('https://medinfo-backend-xm7b.onrender.com/remedies'),
+                axios.get('https://medinfo-backend-xm7b.onrender.com/stats')
             ]);
 
             if (antRes.status === 'fulfilled') {
@@ -123,8 +123,8 @@ const AdminDashboard = () => {
         if (!window.confirm('Are you sure you want to delete this entry?')) return;
         try {
             const endpoint = activeTab === 'antibiotics'
-                ? `http://localhost:5000/antibiotics/${id}`
-                : `http://localhost:5000/remedies/${id}`;
+                ? `https://medinfo-backend-xm7b.onrender.com/antibiotics/${id}`
+                : `https://medinfo-backend-xm7b.onrender.com/remedies/${id}`;
             await axios.delete(endpoint);
             fetchData();
         } catch (err) {
@@ -137,9 +137,9 @@ const AdminDashboard = () => {
         try {
             if (activeTab === 'antibiotics') {
                 if (editingItem && editingItem._id) {
-                    await axios.put(`http://localhost:5000/antibiotics/${editingItem._id}`, antForm);
+                    await axios.put(`https://medinfo-backend-xm7b.onrender.com/antibiotics/${editingItem._id}`, antForm);
                 } else {
-                    await axios.post('http://localhost:5000/antibiotics', antForm);
+                    await axios.post('https://medinfo-backend-xm7b.onrender.com/antibiotics', antForm);
                 }
             } else {
                 const remedyPayload = {
@@ -156,9 +156,9 @@ const AdminDashboard = () => {
                 };
 
                 if (editingItem && editingItem._id) {
-                    await axios.put(`http://localhost:5000/remedies/${editingItem._id}`, remedyPayload);
+                    await axios.put(`https://medinfo-backend-xm7b.onrender.com/remedies/${editingItem._id}`, remedyPayload);
                 } else {
-                    await axios.post('http://localhost:5000/remedies', remedyPayload);
+                    await axios.post('https://medinfo-backend-xm7b.onrender.com/remedies', remedyPayload);
                 }
             }
 

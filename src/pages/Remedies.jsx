@@ -56,7 +56,7 @@ const Remedies = () => {
     ];
 
     useEffect(() => {
-        axios.get("http://localhost:5000/remedies")
+        axios.get("https://medinfo-backend-xm7b.onrender.com/remedies")
             .then(res => {
                 if (res.data && res.data.length > 0) {
                     setRemediesData(res.data);
